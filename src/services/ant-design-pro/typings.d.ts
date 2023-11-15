@@ -3,24 +3,36 @@
 
 declare namespace API {
   type CurrentUser = {
-    name?: string;
-    avatar?: string;
-    userid?: string;
-    email?: string;
-    signature?: string;
-    title?: string;
-    group?: string;
-    tags?: { key?: string; label?: string }[];
-    notifyCount?: number;
-    unreadCount?: number;
-    country?: string;
-    access?: string;
-    geographic?: {
-      province?: { label?: string; key?: string };
-      city?: { label?: string; key?: string };
-    };
-    address?: string;
+    id?:number,
+    username?: string;
+    userAccount: string;
+    avatarUrl?: string;
+    gender?: number;
     phone?: string;
+    email?: string;
+    userStatus?: number;
+    userRole?: number;
+    createTime?: Date;
+    plantCode?:string;
+
+    // name?: string;
+    // avatar?: string;
+    // userid?: string;
+    // email?: string;
+    // signature?: string;
+    // title?: string;
+    // group?: string;
+    // tags?: { key?: string; label?: string }[];
+    // notifyCount?: number;
+    // unreadCount?: number;
+    // country?: string;
+    // access?: string;
+    // geographic?: {
+    //   province?: { label?: string; key?: string };
+    //   city?: { label?: string; key?: string };
+    // };
+    // address?: string;
+    // phone?: string;
   };
 
   type LoginResult = {
@@ -72,6 +84,7 @@ declare namespace API {
     userAccount?: string;//问号表示 属性可选 后面定义的是属性的类型
     userPassword?: string;
     checkPassword?: string;
+    plantCode?:string;
     type?: string;
   };
   type ErrorResponse = {

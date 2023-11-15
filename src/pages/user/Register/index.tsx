@@ -79,6 +79,20 @@ const Register: React.FC = () => {
                   },
                 ]}
               />
+              <ProFormText
+                name="plantCode"
+                fieldProps={{
+                  size: 'large',
+                  prefix: <UserOutlined className={styles.prefixIcon} />,
+                }}
+                placeholder={'请输入星球编号'}
+                rules={[
+                  {
+                    required: true,
+                    message: '星球编号是必填项！',
+                  },
+                ]}
+              />
               <ProFormText.Password
                 name="userPassword"
                 fieldProps={{

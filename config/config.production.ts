@@ -49,6 +49,6 @@ export default defineConfig({
   },
   mfsu: {},
   webpack5: {},
-  //静态化配置
+  //
   exportStatic: {},
 });

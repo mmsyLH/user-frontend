@@ -1,18 +1,18 @@
 import Footer from '@/components/Footer';
-import { register } from '@/services/ant-design-pro/api';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { message, Tabs } from 'antd';
-import React, { useState } from 'react';
-import { history } from 'umi';
+import {register} from '@/services/ant-design-pro/api';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
+import {message, Tabs} from 'antd';
+import React, {useState} from 'react';
+import {history} from 'umi';
 import styles from './index.less';
-import { SYSTEM_LOGO } from "@/constants"
+import {SYSTEM_LOGO} from "@/constants"
 
 const Register: React.FC = () => {
   const [type, setType] = useState<string>('account');
 
   const handleSubmit = async (values: API.RegisterParams) => {
-    const { userPassword, checkPassword } = values;
+    const {userPassword, checkPassword} = values;
     // 效验
     if (userPassword !== checkPassword) {
       message.error("密码不一致");
@@ -21,22 +21,21 @@ const Register: React.FC = () => {
     try {
       // 注册
       const id = await register(values);
-      if (id > 0) {
+      if (id) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
         if (!history) return;
-        const { query } = history.location;
+        const {query} = history.location;
         history.push({
           pathname: "/user/login",
           query,
         });
         return;
-      } else {
-        throw new Error(`注册失败 error id=${id}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       const defaultLoginFailureMessage = '注册失败，请重试！';
-      message.error(defaultLoginFailureMessage);
+      // @ts-ignore
+      message.error(error.message ?? defaultLoginFailureMessage);
     }
   };
 
@@ -49,7 +48,7 @@ const Register: React.FC = () => {
               submitText: "注册"
             }
           }}
-          logo={<img alt="logo" src={SYSTEM_LOGO} />}
+          logo={<img alt="logo" src={SYSTEM_LOGO}/>}
           title="用户中心"
           subTitle={'lh项目组件——用户中心'}
           initialValues={{
@@ -60,7 +59,7 @@ const Register: React.FC = () => {
           }}
         >
           <Tabs activeKey={type} onChange={setType}>
-            <Tabs.TabPane key="account" tab={'账户密码注册'} />
+            <Tabs.TabPane key="account" tab={'账户密码注册'}/>
           </Tabs>
 
           {type === 'account' && (
@@ -69,7 +68,7 @@ const Register: React.FC = () => {
                 name="userAccount"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined className={styles.prefixIcon} />,
+                  prefix: <UserOutlined className={styles.prefixIcon}/>,
                 }}
                 placeholder={'请输入账号'}
                 rules={[
@@ -83,7 +82,7 @@ const Register: React.FC = () => {
                 name="plantCode"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined className={styles.prefixIcon} />,
+                  prefix: <UserOutlined className={styles.prefixIcon}/>,
                 }}
                 placeholder={'请输入星球编号'}
                 rules={[
@@ -97,7 +96,7 @@ const Register: React.FC = () => {
                 name="userPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined className={styles.prefixIcon} />,
+                  prefix: <LockOutlined className={styles.prefixIcon}/>,
                 }}
                 placeholder={'请输入密码'}
                 rules={[
@@ -116,7 +115,7 @@ const Register: React.FC = () => {
                 name="checkPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined className={styles.prefixIcon} />,
+                  prefix: <LockOutlined className={styles.prefixIcon}/>,
                 }}
                 placeholder={'请再次输入密码'}
                 rules={[
@@ -135,7 +134,7 @@ const Register: React.FC = () => {
           )}
         </LoginForm>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };

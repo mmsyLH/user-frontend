@@ -2,8 +2,17 @@
 /* eslint-disable */
 
 declare namespace API {
+  //对接后端的通用返回类
+  type BaseResponse<T> = {
+    code: number;
+    data: T;
+    message: string;
+    description: string;
+  }
+
+
   type CurrentUser = {
-    id?:number,
+    id?: number,
     username?: string;
     userAccount: string;
     avatarUrl?: string;
@@ -13,7 +22,7 @@ declare namespace API {
     userStatus?: number;
     userRole?: number;
     createTime?: Date;
-    plantCode?:string;
+    plantCode?: string;
 
     // name?: string;
     // avatar?: string;
@@ -84,7 +93,7 @@ declare namespace API {
     userAccount?: string;//问号表示 属性可选 后面定义的是属性的类型
     userPassword?: string;
     checkPassword?: string;
-    plantCode?:string;
+    plantCode?: string;
     type?: string;
   };
   type ErrorResponse = {

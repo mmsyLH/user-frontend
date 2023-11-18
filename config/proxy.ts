@@ -19,14 +19,14 @@ export default {
   },
   test: {
     '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+      target: 'http://lhweb.asia:8080',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
   pre: {
     '/api/': {
-      target: 'your pre url',
+      target: 'http://lhweb.asia:8080',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
